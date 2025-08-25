@@ -17,9 +17,8 @@ function ShortenerForm() {
 
     try {
       // Make the POST request to the Flask backend
-      const response = await axios.post('http://localhost:5000/api/shorten', {
-        url: url
-      });
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/shorten`, { ... });
       setShortUrl(response.data.short_url);
     } catch (err) {
       setError('Could not shorten the URL. Please try again.');
